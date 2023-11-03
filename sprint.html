@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+ 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+<body>
+    <form id ="userForm">
+    <header>
+        <h1>Daily check in App.Your health matters </h1>
+        <h2>Would you like to take control of your life?</h2>
+        <h3>If so please follow through with these  steps</h3>
+    </header>
+        
+    <table>
+        
+        <tr>
+            <th>Name:</th>
+            <td><input type="text" name = "name" id ="name" required></td>
+        </tr>
+        <tr>
+            <th>School:</th>
+            <td><input type="text" name = "school" id ="school"></td>
+        </tr>
+        <tr>
+            <th>Address:</th>
+            <td><input type="text" name = "address" id ="address"></td>
+        </tr>
+        <tr>
+            <th>Age:</th>
+            <td><input type="text" name = "age" id ="age"></td>
+        </tr>
+        <tr>
+            <th>Mood:</th>
+            <td><input type="text" name = "mood" id ="mood"></td>
+            
+        </tr>
+            <tr>
+            
+            <td><input type = "button" value = "Submit" onclick = "submitForm()"></td>
+            </tr>
+              
+              
+       
+        </table>
+       
+    </form>
+    
+    
+        <p>Everyday of your life really matters</p>
+        <footer>
+            <p>&copy;The music company by Maria</p>
+        </footer>
+    </form>
+<script>
+    function submitForm(){
+        //trying to get an input value of an html element and getting its value-->
+        var name = document.getElementById("name").value;
+        var school = document.getElementById("school").value;
+        var address = document.getElementById("address").value;
+        var age = document.getElementById("age").value;
+        var mood = document.getElementById("mood").value;
+        //creating a json object to help u hold
+         var userData = {
+            name: name,
+            school: school,
+            address: address,
+            age: age,
+            mood: mood
+         };
+         //converting object into a json string to store our user input data
+         var jsonData = JSON.stringify(userData);
+         console.log("User Data(JSON):",jsonData);
+
+         if (mood==="sunny"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/TyU0sNP.jpg")';
+            }
+            if (mood==="anxious"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp5852597.jpg")';
+                fetch('/getMoodFile')
+                .then((response)=>response.text())
+                .then((data)=>{
+                    console.log(data);
+                })
+                .catch((error)=>{
+                    consol.error('Error:',error);
+                });
+            }
+            if (mood === "stormy"){
+                document.body.style.backgroundImage='url("https://cdn.wallpapersafari.com/20/67/30Hy2q.jpg")';
+            }
+            if (mood ==="energetic"){
+                document.body.style.backgroundImage ='url("https://wallpaperaccess.com/full/4023057.jpg")';
+            }
+            if(mood ==="normal"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp2464974.jpg")';
+
+    }
+}
+    
+           
+        
+</script>
+</body>
+</html>
+    
