@@ -1,34 +1,26 @@
-const http = require('http');
-const fs = require('fs');
-const server = http.createserver((req,res) => {
-    if(req.method === 'GET' && req.url === '/getMoodFile'){
-        const mood = 'anxious';
+// we want to handle http requests
+ const http = require('http');
+ //  handle file systems
+ const fs = require('fs');
+ // set a path
+ const path = require('path');
+ // were creating a server that sends requests and brings back responses
+ const server = http.createServer((req, res)=>{
+    //we would like it to follow a url from recommendations
+    const filePath = path.join(__dirname, req.url === '/' ? 'recommendations.html' :req.url);
+    // trying to read the file specified by the file path. 
+    const fileStream = fs.createReadStream(filePath);
+    // checks if file was found 
+    fileStream.on('error', () =>{ 
+        res.writeHead(404,{ 'Content-Type': 'text/html' });
+        res.end('404 Not Found');
+    });
+    //brings back the response  to the client.
+    fileStream.pipe(res);
+ });
+ // trying to check if our sever is listening on our desired port.
+ const port =8000;
+ server.listen(port, () =>{
+    console.log(`Server is running at http://localhost:${port}`);
 
-    
-    if (mood==="anxious") {
-        const file = anxious.txt;
-        fs.readFile(file, (err,data) => {
-            if (err){
-                res.statusCode= 500;
-                res.end('Internal server error');
-
-            }
-            else{
-                res.setHeader('Content-Type','text/plain');
-                res.end(data);
-            }
-          });
-    }else{
-        res.statusCode=404;
-        res.end('Mood not found');
-    }
-}else{
-    res.statusCode=404;
-    res.end('not found');
-}
-});
-const port = 3000;
-server.listen(port, ()=>{
-console.log(`Server is listening on port ${port}`);
-});
-
+ });
