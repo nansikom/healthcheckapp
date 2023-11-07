@@ -1,0 +1,23 @@
+table {
+    border-collapse: separate;
+    background-color: blueviolet;
+    border-spacing: 5px;
+  }
+  
+  table,th, td{
+    border:1px solid black;
+    width:40%
+  }
+  header{
+    background-color:lightblue;
+    color: black;
+    padding:1px;
+
+  }
+  body {
+    background-image: url("https://getwallpapers.com/wallpaper/full/3/6/8/1515997-mental-health-wallpaper-2048x2732-screen.jpg");
+    background-size:300% 200%; /* Adjusts the image size to cover the entire viewport */
+    background-position: center; /* Centers the image horizontally and vertically */
+    background-repeat: no-repeat; /* Prevents image repetition */
+}
+https://wallpapercave.com/wp/wp5865126.jpg
