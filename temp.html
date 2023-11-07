@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+ 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style1.css">
+    </head>
+<body>
+    <nav>
+        <a href="sprint.html">Back to profile page</a>
+        <a href="recommendations.html">Are you sure you would like to go to this recommendations page </a>
+    </nav>
+    <form id ="userForm">
+    <header>
+        <h1>Daily check in App.Your health matters </h1>
+        <h2>Would you like to take control of your life?</h2>
+        <h3>If so please follow through with these  steps</h3>
+        <p>Lets takes some health measurements</p>
+    </header>
+        
+    
+      
+        
+            <p>heartrate:</p>
+            <p>Get ready to measure your heart rate</p>
+            <p><input type="text" name = "heartrate" id ="heartrate" required></p>
+            <button type = "button"  onclick = "generateheartrate()">Press here to measure heartrate</button>
+            <p id ="heartratemessage"></p>
+        
+        
+       
+            <tH></tH>sleeptime:</th>
+            <p>Whats your sleep time</p>
+            <p>This will help us measure your sleep rates and give advice as required</p>
+            <td><input type="number" name = "sleeptime" id ="sleeptime"></td>
+            <button type = "button"  onclick = "measuresleeplevels()">Input sleep level</button>
+            <p id="sleep"></p>
+
+        
+            <p>Working out</p>
+            <p >How many minutes do you work out per day</p>
+            <p>This will help us gather the work out time per day to give you the advice required to work out</p>
+            <p>Input your work time per day</p>
+            <input type="number" name ="workingout" id ="workingout">
+            <button type = "button"  onclick = "generateenergylevels()">Press here to tell us about your workout time</button>
+            <p id="physical"></p>
+        
+        
+
+            <p>Temperature:</p>
+            <p>Get ready to measure ur temperature </p>
+            <input type="text" name = "temp" id ="temp">
+            <button type = "button"  onclick = "generateusertemperature()">Press here to measure temperature</button>
+            <p id ="temperaturemessage"></p>
+        
+
+       
+            <tr>
+            
+            <td><input type = "button" value = "Submit" onclick = "submitForm()"></td>
+            </tr>
+              
+            <td><input type = "button" value = "Undo" onclick = "resetForm()">This will remove all the used data u input</td>
+       
+       
+    </form>
+    
+       <p>dear User ,were about to get ask for more data if your okay with this get ready for more steps and take control of your life.</p>
+        <p>Everyday of your life really matters</p>
+        <footer>
+            <p>&copy;The music company by Maria</p>
+        </footer>
+    </form>
+<script>
+    function submitForm(){
+        //trying to get an input value of an html element and getting its value-->
+        var name = document.getElementById("heartrate").value;
+        var school = document.getElementById("sleeptime").value;
+        var address = document.getElementById("address").value;
+        var age = document.getElementById("age").value;
+        
+        //creating a json object to help u hold
+         var userData = {
+            heartrate:heartrate,
+            sleeptime: sleeptime,
+            energylevel: energylevel,
+            temp: temp
+         };
+         //converting object into a json string to store our user input data
+         var jsonData = JSON.stringify(userData);
+        console.log("User Data(JSON):",jsonData);
+        console.log("Were about to start asking you for more data:",userData.name);
+        console.log("Get ready for temperature measurements");
+         
+         if (weather==="sunny"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/TyU0sNP.jpg")';
+            }
+            if (weather==="coldy"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp5852597.jpg")';
+              //  fetch('/getMoodFile')
+              //  .then((response)=>response.text())
+              //  .then((data)=>{
+             //       console.log(data);
+            //    })
+             //   .catch((error)=>{
+             //       consol.error('Error:',error);
+              //  });
+            }
+            if (weather === "windy"){
+                document.body.style.backgroundImage='url("https://cdn.wallpapersafari.com/20/67/30Hy2q.jpg")';
+            }
+            if (weather ==="rainy"){
+                document.body.style.backgroundImage ='url("https://wallpaperaccess.com/full/4023057.jpg")';
+            }
+            if(weather ==="snowy"){
+                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp2464974.jpg")';
+
+    }
+
+    console.log()
+}
+ function gettemperature(min,max){
+    //gets a value and sets the seed and sets our starting of temperature and ending of the temperature.
+ return Math.random() *(max -min) + min;
+ }
+ function generateusertemperature(){
+    const randomtemp = gettemperature(9,46);
+// keep it as a number and not a string.
+    const usertemp= randomtemp.toFixed(3);
+    document.getElementById("temp").value = usertemp + " degrees C";
+   const temperatureMessage = document.getElementById("temperaturemessage")
+    if (usertemp < 35){
+        temperatureMessage.textContent="Your hypethormic";
+    }
+   else if (usertemp > 38){
+        temperatureMessage.textContent="Alert your temperature is too high";
+    }
+    else{
+        temperatureMessage.textContent="Your temperature is normal";
+    }
+ }
+
+ function generateheartrate(){
+    const randomheartrate = gettemperature(27,228);
+// keep it as a number and not a string.
+    const userheartrate= randomheartrate.toFixed(2);
+    document.getElementById("heartrate").value = userheartrate + " beats per minute";
+   const heartratemessage = document.getElementById("heartratemessage");
+    if (userheartrate > 100){
+        heartratemessage.textContent="Exhibiting signs of Tachycardia high heart rate";
+    }
+   else if (userheartrate < 60){
+        heartratemessage.textContent="Exhibiting signs of Bradycardia lowheartrate if your not in low physical activity this is dangerous";
+    }
+    else{
+        heartratemessage.textContent="Your heart rate is normal";
+    }
+ }
+ function generateenergylevels(){
+    var workingout = parseInt(document.getElementById("workingout").value);
+   // document.getElementById("heartrate").value = userheartrate + " beats per minute";
+   const physical = document.getElementById("physical");
+   //document.getElementById("physical").textContent =  "Your heart rate is " + workingout ;
+
+    if (workingout > 150){
+        physical.textContent="Your really working out alot u need to tone it down a notch";
+    }
+   else if (workingout < 150){
+        physical.textContent="Physical fitness is really important for your health get ur ass up";
+    }
+    else{
+        physical.textContent="Your energry is normal good luck chump";
+    }
+ }
+ function measuresleeplevels(){
+    var sleeptime = parseInt(document.getElementById("sleeptime").value);
+   // document.getElementById("heartrate").value = userheartrate + " beats per minute";
+   const sleep = document.getElementById("sleep");
+   //document.getElementById("physical").textContent =  "Your heart rate is " + workingout ;
+
+    if (sleeptime > 9){
+        sleep.textContent="Your sleeping yourself out tone it abit";
+    }
+   else if (sleeptime < 9){
+        sleep.textContent="Sleep is always advised for a healthy living";
+    }
+    else{
+        sleep.textContent="Your sleep is normal good luck chump";
+    }
+ }
+ function resetForm(){
+    document.getElementById("userForm").reset();
+    document.getElementById("result").textContent = "";
+
+}
+ 
+           
+        
+</script>
+</body>
+</html>
+    
