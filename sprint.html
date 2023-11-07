@@ -11,11 +11,16 @@
         <link rel="stylesheet" type="text/css" href="style.css">
     </head>
 <body>
+    <nav>
+        <a href="temp.html">Temp </a>
+    </nav>
     <form id ="userForm">
     <header>
         <h1>Daily check in App.Your health matters </h1>
+        <h2><em style ="color: blue;"Get ready to set up your profile></em></h2>
         <h2>Would you like to take control of your life?</h2>
         <h3>If so please follow through with these  steps</h3>
+
     </header>
         
     <table>
@@ -43,7 +48,8 @@
         </tr>
             <tr>
             
-            <td><input type = "button" value = "Submit" onclick = "submitForm()"></td>
+            <td><input type = "button" value = "Submit" onclick = "submitForm()">This submits your data to the server</td>
+            <td><input type = "button" value = "Undo" onclick = "resetForm()">This literally removes everything</td>
             </tr>
               
               
@@ -51,8 +57,9 @@
         </table>
        
     </form>
+    <p id="result"></p>
     
-    
+       <p> dear User ,were about to get ask for more data if your okay with this get ready for more steps and take control of your life.</p>
         <p>Everyday of your life really matters</p>
         <footer>
             <p>&copy;The music company by Maria</p>
@@ -76,21 +83,23 @@
          };
          //converting object into a json string to store our user input data
          var jsonData = JSON.stringify(userData);
-         console.log("User Data(JSON):",jsonData);
-
+        console.log("User Data(JSON):",jsonData);
+        console.log("Were about to start asking you for more data:",userData.name);
+        console.log("Get ready for temperature measurements");
+         
          if (mood==="sunny"){
                 document.body.style.backgroundImage='url("https://wallpapercave.com/wp/TyU0sNP.jpg")';
             }
             if (mood==="anxious"){
                 document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp5852597.jpg")';
-                fetch('/getMoodFile')
-                .then((response)=>response.text())
-                .then((data)=>{
-                    console.log(data);
-                })
-                .catch((error)=>{
-                    consol.error('Error:',error);
-                });
+              //  fetch('/getMoodFile')
+              //  .then((response)=>response.text())
+              //  .then((data)=>{
+             //       console.log(data);
+            //    })
+             //   .catch((error)=>{
+             //       consol.error('Error:',error);
+              //  });
             }
             if (mood === "stormy"){
                 document.body.style.backgroundImage='url("https://cdn.wallpapersafari.com/20/67/30Hy2q.jpg")';
@@ -100,8 +109,13 @@
             }
             if(mood ==="normal"){
                 document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp2464974.jpg")';
+            }
+    console.log()
+}
+function resetForm(){
+    document.getElementById("userForm").reset();
+    document.getElementById("result").textContent = "";
 
-    }
 }
     
            
