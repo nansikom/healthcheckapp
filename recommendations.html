@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+ 
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" type="text/css" href="style3.css">
+    </head>
+<body>
+    <nav>
+        <a href="sprint.html">Back to profile page</a>
+        <a href="recommendations.html">Are you sure you would like to go to this recommendations page </a>
+    </nav>
+   
+    <header>
+        <h1>Daily check in App.Your health matters </h1>
+        <h2>Would you like to take control of your life?</h2>
+        <h3>If so please follow through with these  steps</h3>
+        <p>Lets takes some health measurements</p>
+    </header>
+        
+    
+      
+        
+            <label for="select file">SElect a file to read based off the tips ur looking for</label>
+            <select id="selectedfile">
+            <option value="anxiety.txt">healing anxiety</option>
+            </select>
+            <button type = "button"  onclick = "processfile()">Your about to get insider knowledge about anxiety.Warning this may require more reading</button>
+            <p>Are you sure you want to do this</p>
+            <pre id="filecontent"></pre>
+       
+            
+        
+           
+        
+
+
+
+              
+            <td><input type = "button" value = "Undo" onclick = "resetForm()">This will remove all the used data u input</td>
+       
+       
+
+    
+       <p>dear User ,were about to get ask for more data if your okay with this get ready for more steps and take control of your life.</p>
+        <p>Everyday of your life really matters</p>
+        <footer>
+            <p>&copy;The music company by Maria</p>
+        </footer>
+    
+<script>
+    
+ function resetForm(){
+    document.getElementById("userForm").reset();
+    document.getElementById("result").textContent = "";
+
+}
+function processfile(){
+    const selectedfile=document.getElementById("selectedfile");
+    const fileselect=selectedfile.value;
+    const filecontent=document.getElementById("filecontent");
+    if (fileselect==="anxiety.txt") {
+        fetch("anxiety.txt")
+        .then(response=>{
+            if(!response.ok){
+                throw new error("File not found");
+            }
+            return response.text();
+        })
+        .then (data => {
+          filecontent.textContent = data;
+        })
+        .catch (error =>{
+            filecontent.textContent = "Error opening file: " + error;
+        });
+    }else{
+        filecontent.textContent="No select file";
+    }
+}
+ 
+           
+        
+</script>
+</body>
+</html>
+    
