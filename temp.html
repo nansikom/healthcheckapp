@@ -23,13 +23,17 @@
         <p>Lets takes some health measurements</p>
     </header>
         
-    
-      
+    <tr>
+        <th>weather:</th>
+        <td><input type="text" name = "weather" id ="weather"></td>
         
+        </tr>
+      
+            <div id="myelement"></div>
             <p>heartrate:</p>
             <p>Get ready to measure your heart rate</p>
             <p><input type="text" name = "heartrate" id ="heartrate" required></p>
-            <button type = "button"  onclick = "generateheartrate()">Press here to measure heartrate</button>
+            <button type = "button"  onclick = "generateheartrate()" style ="padding: 10px;background-color:blueviolet ; color:black;">Press here to measure heartrate</button>
             <p id ="heartratemessage"></p>
         
         
@@ -38,16 +42,16 @@
             <p>Whats your sleep time</p>
             <p>This will help us measure your sleep rates and give advice as required</p>
             <td><input type="number" name = "sleeptime" id ="sleeptime"></td>
-            <button type = "button"  onclick = "measuresleeplevels()">Input sleep level</button>
-            <p id="sleep"></p>
+            <button type = "button"  onclick = "measuresleeplevels()" style ="padding: 10px;background-color:blueviolet ; color:black;">Input sleep level</button>
+            <p id="sleep"></p
 
         
             <p>Working out</p>
-            <p >How many minutes do you work out per day</p>
+            <p>How many minutes do you work out per day</p>
             <p>This will help us gather the work out time per day to give you the advice required to work out</p>
             <p>Input your work time per day</p>
             <input type="number" name ="workingout" id ="workingout">
-            <button type = "button"  onclick = "generateenergylevels()">Press here to tell us about your workout time</button>
+            <button type = "button"  onclick = "generateenergylevels()" style ="padding: 10px;background-color:blueviolet ; color:black;">Press here to tell us about your workout time</button>
             <p id="physical"></p>
         
         
@@ -55,40 +59,41 @@
             <p>Temperature:</p>
             <p>Get ready to measure ur temperature </p>
             <input type="text" name = "temp" id ="temp">
-            <button type = "button"  onclick = "generateusertemperature()">Press here to measure temperature</button>
+            <button type = "button"  onclick = "generateusertemperature()"style ="padding: 10px;background-color:blueviolet ; color:black;">Press here to measure temperature</button>
             <p id ="temperaturemessage"></p>
         
 
        
             <tr>
             
-            <td><input type = "button" value = "Submit" onclick = "submitForm()"></td>
+            <td><input type = "button" value = "Submit" onclick = "submitForm()"style ="padding: 10px;background-color:green ; color:black;"></td>
             </tr>
               
             <td><input type = "button" value = "Undo" onclick = "resetForm()">This will remove all the used data u input</td>
        
        
     </form>
+    <p id="result"></p>
     
-       <p>dear User ,were about to get ask for more data if your okay with this get ready for more steps and take control of your life.</p>
-        <p>Everyday of your life really matters</p>
-        <footer>
-            <p>&copy;The music company by Maria</p>
-        </footer>
+       
     </form>
 <script>
+    window.onload = function(){
+        document.getElementById("myelement").textContent ='Health Tip';
+    }
     function submitForm(){
         //trying to get an input value of an html element and getting its value-->
+        document.getElementById("myelement").textContent ='Health Tip';
         var name = document.getElementById("heartrate").value;
         var school = document.getElementById("sleeptime").value;
-        var address = document.getElementById("address").value;
-        var age = document.getElementById("age").value;
+        var workingout = document.getElementById("workingout").value;
+        var weather = document.getElementById("weather").value;
         
         //creating a json object to help u hold
          var userData = {
             heartrate:heartrate,
             sleeptime: sleeptime,
-            energylevel: energylevel,
+            workingout: workingout,
             temp: temp
          };
          //converting object into a json string to store our user input data
@@ -96,34 +101,29 @@
         console.log("User Data(JSON):",jsonData);
         console.log("Were about to start asking you for more data:",userData.name);
         console.log("Get ready for temperature measurements");
-         
+         console.log(weather);
          if (weather==="sunny"){
                 document.body.style.backgroundImage='url("https://wallpapercave.com/wp/TyU0sNP.jpg")';
             }
             if (weather==="coldy"){
-                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp5852597.jpg")';
-              //  fetch('/getMoodFile')
-              //  .then((response)=>response.text())
-              //  .then((data)=>{
-             //       console.log(data);
-            //    })
-             //   .catch((error)=>{
-             //       consol.error('Error:',error);
-              //  });
+                document.body.style.backgroundImage='url("https://i.pngimg.me/thumb/f/720/4752774461915136.jpg")';
             }
             if (weather === "windy"){
-                document.body.style.backgroundImage='url("https://cdn.wallpapersafari.com/20/67/30Hy2q.jpg")';
+                document.body.style.backgroundImage='url("https://images.freecreatives.com/wp-content/uploads/2016/04/Website-Backgrounds-For-Desktop.jpg")';
             }
             if (weather ==="rainy"){
-                document.body.style.backgroundImage ='url("https://wallpaperaccess.com/full/4023057.jpg")';
+                document.body.style.backgroundImage ='url("https://www.shutterstock.com/blog/india/wp-content/uploads/sites/10/2018/05/shutterstock_1071706322-2.jpg")';
             }
             if(weather ==="snowy"){
-                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp2464974.jpg")';
+                document.body.style.backgroundImage='url("https://www.hdwallpaper.nu/wp-content/uploads/2017/03/snowman-1.jpg")';
 
     }
 
     console.log()
 }
+/*
+Different function using fetch api to get data from Lisas microservice and display it in form of a list.
+*/
  function gettemperature(min,max){
     //gets a value and sets the seed and sets our starting of temperature and ending of the temperature.
  return Math.random() *(max -min) + min;
@@ -136,9 +136,43 @@
    const temperatureMessage = document.getElementById("temperaturemessage")
     if (usertemp < 35){
         temperatureMessage.textContent="Your hypethormic";
+        fetch('https://finkli.pythonanywhere.com/temperature/decrease')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
    else if (usertemp > 38){
         temperatureMessage.textContent="Alert your temperature is too high";
+        fetch('https://finkli.pythonanywhere.com/temperature/increase')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
     else{
         temperatureMessage.textContent="Your temperature is normal";
@@ -153,9 +187,43 @@
    const heartratemessage = document.getElementById("heartratemessage");
     if (userheartrate > 100){
         heartratemessage.textContent="Exhibiting signs of Tachycardia high heart rate";
+        fetch('https://finkli.pythonanywhere.com/heart-rate/improve')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
    else if (userheartrate < 60){
-        heartratemessage.textContent="Exhibiting signs of Bradycardia lowheartrate if your not in low physical activity this is dangerous";
+        heartratemessage.textContent="Exhibiting signs of Bradycardia lowheartrate";
+        fetch('https://finkli.pythonanywhere.com/heart-rate/decrease')
+        .then((response)=>response.json())
+                .then((data)=>{
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
     else{
         heartratemessage.textContent="Your heart rate is normal";
@@ -163,15 +231,46 @@
  }
  function generateenergylevels(){
     var workingout = parseInt(document.getElementById("workingout").value);
-   // document.getElementById("heartrate").value = userheartrate + " beats per minute";
    const physical = document.getElementById("physical");
-   //document.getElementById("physical").textContent =  "Your heart rate is " + workingout ;
-
     if (workingout > 150){
         physical.textContent="Your really working out alot u need to tone it down a notch";
+        fetch('https://finkli.pythonanywhere.com/physical-activity/decrease')
+        .then((response)=>response.json())
+                .then((data)=>{
+                    const result = document.getElementById("result");
+                    const list = document.createElement("ul");
+                    data.health_tip.forEach((tip) =>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
+                
     }
    else if (workingout < 150){
-        physical.textContent="Physical fitness is really important for your health get ur ass up";
+        fetch('https://finkli.pythonanywhere.com/working-out-time/increase')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const result = document.getElementById("result");
+                    const list = document.createElement("ul");
+                    data.health_tip.forEach((tip) =>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
     else{
         physical.textContent="Your energry is normal good luck chump";
@@ -179,15 +278,48 @@
  }
  function measuresleeplevels(){
     var sleeptime = parseInt(document.getElementById("sleeptime").value);
-   // document.getElementById("heartrate").value = userheartrate + " beats per minute";
    const sleep = document.getElementById("sleep");
-   //document.getElementById("physical").textContent =  "Your heart rate is " + workingout ;
-
     if (sleeptime > 9){
         sleep.textContent="Your sleeping yourself out tone it abit";
+        fetch('https://finkli.pythonanywhere.com/sleep-time/reduce')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const result = document.getElementById("result");
+                    const unorderedlist = document.createElement("ul");
+                    data.health_tip.forEach((tip) => {
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        unorderedlist.appendChild(li);
+
+
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(unorderedlist);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
    else if (sleeptime < 9){
         sleep.textContent="Sleep is always advised for a healthy living";
+        fetch('https://finkli.pythonanywhere.com/sleep-time/increase')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const result = document.getElementById("result");
+                    const unorderedlist = document.createElement("ul");
+                    data.health_tip.forEach((tip) => {
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        unorderedlist.appendChild(li);
+                    });
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(unorderedlist);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
     }
     else{
         sleep.textContent="Your sleep is normal good luck chump";
