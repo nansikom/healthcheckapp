@@ -12,14 +12,14 @@
     </head>
 <body>
     <nav>
-        <a href="temp.html">Temp </a>
+        <a href="temp.html">Click here to get check your body measurements </a>
     </nav>
     <form id ="userForm">
     <header>
         <h1>Daily check in App.Your health matters </h1>
         <h2><em style ="color: blue;"Get ready to set up your profile></em></h2>
         <h2>Would you like to take control of your life?</h2>
-        <h3>If so please follow through with these  steps</h3>
+        <h3>Fill in the textboxes below</h3>
 
     </header>
         
@@ -83,26 +83,49 @@
          };
          //converting object into a json string to store our user input data
          var jsonData = JSON.stringify(userData);
-        console.log("User Data(JSON):",jsonData);
-        console.log("Were about to start asking you for more data:",userData.name);
-        console.log("Get ready for temperature measurements");
-         
          if (mood==="sunny"){
                 document.body.style.backgroundImage='url("https://wallpapercave.com/wp/TyU0sNP.jpg")';
             }
             if (mood==="anxious"){
-                document.body.style.backgroundImage='url("https://wallpapercave.com/wp/wp5852597.jpg")';
-              //  fetch('/getMoodFile')
-              //  .then((response)=>response.text())
-              //  .then((data)=>{
-             //       console.log(data);
-            //    })
-             //   .catch((error)=>{
-             //       consol.error('Error:',error);
-              //  });
+                document.body.style.backgroundImage='url("https://www.parentmap.com/images/article/8678/anxious-girl-istock.jpg")';
+                fetch('http://localhost:5000/api/mood/anxiety')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    //console.log(data);
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
             }
             if (mood === "stormy"){
                 document.body.style.backgroundImage='url("https://cdn.wallpapersafari.com/20/67/30Hy2q.jpg")';
+                fetch('http://localhost:5000/api/mood/stormy')
+                .then((response)=>response.json())
+                .then((data)=>{
+                    const list = document.createElement("ul");
+                    const result = document.getElementById("result");
+                    data.health_tip.forEach((tip)=>{
+                        const li = document.createElement("li");
+                        li.textContent = tip;
+                        list.appendChild(li);
+                    })
+                    const textNode = document.createTextNode("Health Tip");
+                    result.appendChild(textNode);
+                    result.appendChild(list);
+                })
+                .catch((error)=>{
+                    console.error('Error:',error);
+                });
             }
             if (mood ==="energetic"){
                 document.body.style.backgroundImage ='url("https://wallpaperaccess.com/full/4023057.jpg")';
