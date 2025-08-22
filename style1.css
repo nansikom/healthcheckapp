@@ -15,10 +15,8 @@ table {
     padding:1px;
 
   }
-  body {
-    background-image: url("https://www.foamite.com/wp-content/uploads/2016/02/10.ROOM-TEMPERATURE.jpg");
-    background-size: 100% 100%; /* Adjusts the image size to cover the entire viewport */
-    background-position: center; /* Centers the image horizontally and vertically */
-    background-repeat: no-repeat; /* Prevents image repetition */
-}
-https://wallpapercave.com/wp/wp5865126.jpg
+ body{
+      background-color:pink;
+
+
+ }

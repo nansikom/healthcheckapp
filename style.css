@@ -1,7 +1,7 @@
 
     table {
         border-collapse: separate;
-        background-color: blueviolet;
+        background-color: lightblue;
         border-spacing: 5px;
       }
       
@@ -10,15 +10,11 @@
         width:40%
       }
       header{
-        background-color:grey;
+        background-color:lightblue;
         color: black;
         padding:1px;
 
       }
       body {
-        background-image: url("https://wallpaperaccess.com/full/749804.jpg");
-        background-size: 120% 200%; /* Adjusts the image size to cover the entire viewport */
-        background-position: center; /* Centers the image horizontally and vertically */
-        background-repeat: no-repeat; /* Prevents image repetition */
-    }
-    https://wallpapercave.com/wp/wp5865126.jpg
+        background-color: pink;
+      }
