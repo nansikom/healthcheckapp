@@ -29,14 +29,10 @@ cd sprint
 Initialize Node project
 
 bash
-Copy
-Edit
 npm init -y
 Install dependencies
 
 bash
-Copy
-Edit
 npm install
 npm install express
 npm install request
@@ -45,17 +41,13 @@ RUNNING THE APP
 Start the Node servers
 
 bash
-Copy
-Edit
 node node.js
 node server.js
 Open the app in your browser
 
 The app will typically run at:
 
-arduino
-Copy
-Edit
+
 http://localhost:5000
 Use the interface
 
@@ -65,8 +57,6 @@ Receive guidance and advice based on your input
 
 PROJECT STRUCTURE
 bash
-Copy
-Edit
 sprint/
 ├── server.js       # Main server handling requests
 ├── node.js         # Secondary server logic
