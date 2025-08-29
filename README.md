@@ -20,7 +20,7 @@ A simple web application that helps users monitor their basic health indicators 
 
 ---
 ## Simple demo of the working application
-[Health app demo | Devpost](https://youtu.be/SPihiQ33xKI)
+[Health app demo | Code demo](https://youtu.be/SPihiQ33xK|https://www.youtube.com/watch?v=9O9jin5N-Tc)
 
 ## SETUP & INSTALLATION
 
