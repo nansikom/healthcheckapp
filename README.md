@@ -19,7 +19,8 @@ A simple web application that helps users monitor their basic health indicators 
 - Basic knowledge of running commands in PowerShell or Command Prompt  
 
 ---
-
+## Simple demo of the working application
+[Health app demo]|https://youtu.be/SPihiQ33xKI
 ## SETUP & INSTALLATION
 
 1. **Clone the repository**
@@ -66,4 +67,7 @@ sprint/
 ├── style1.css      # Additional styling
 ├── style3.css      # Additional styling
 └── anxiety.txt     # Data or content file for anxiety checks
-NOTES
+```
+## Futute plans
+Adding a database to hold employee data 
+Integrating a health api that measure heartrate 
